@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./components/Login.jsx";
+import Signup from "./components/Signup.jsx";
+import Dashboard from "./components/Dashboard.jsx";
+import Sidebar from "./components/Sidebar.jsx";
+import { useEffect, useState } from "react";
+import Users from "./components/Users.jsx";
+import Account from "./components/Account.jsx";
+import Statics from "./components/Statics.jsx";
 
 function App() {
+  
+  const initialLoginStatus = localStorage.getItem("isLoggedIn") === "true";
+  const [isLoggedIn, setIsLoggedIn] = useState(initialLoginStatus);
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", isLoggedIn);
+  }, [isLoggedIn]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn}  />} />
+        <Route path="/signup" element={<Signup />} />
+      
+
+        <Route
+          path="/*"
+          element={
+            isLoggedIn ? (
+              <div className="grid-container">
+             
+                <Sidebar
+                
+                />
+
+                <Routes>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/users" element={<Users />} />
+                  <Route path="/accounts" element={<Account />} />
+                  <Route path="/statics" element={<Statics />} />
+                </Routes>
+              </div>
+            ) : (
+              <Login setIsLoggedIn={setIsLoggedIn} />
+            )
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
