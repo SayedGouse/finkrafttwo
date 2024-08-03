@@ -71,9 +71,10 @@ body{
   width: 70%;
   height: 400px;
   background-color:#50CB93;
-  margin-top: 85%;
+  margin-top: 500px;
   border-radius: 10%;
   position: relative;
+  margin-bottom: 50px;
 }
 
 .pass{
@@ -215,8 +216,8 @@ body{
 
 .dashboard{
   background-color: #e9e9f0ef;
-  width: 75vw;
-  height: 90vh;
+  width: 1250px;
+  height: 740px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2),0 0px 0px rgba(0, 0, 0, 0.9);
@@ -544,7 +545,7 @@ body{
   width: 70vw;
   height: 34%;
   background-color: #ffffff;
-  margin-left:50px ;
+  margin-left:30px ;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   margin-top: 15px;
